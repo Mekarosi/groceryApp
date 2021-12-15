@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
+import List from './List'
+import Alert from './Alert'
+
+
 import './App.css';
 
-function App() {
+
+
+
+const App = () => {
+
+const [name, setName] = useState('')
+const [list, setList] = useState([])
+const [isEditing , setIsEditing] = useState(false)
+const [editId, setEditId] = useState(null)
+const [alert, setAlert] = useState({ show: false, msg: '', type: '' })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className='section-center'>
+      
+      <h3>Grocery Bud</h3>
+      <form className='grocery-form' >
+      <Alert />
+      <div className='form-control'>
+        <input type='text' name={name}  className='grocery' placeholder='e.g. eggs' value={name} onChange={(e) => setName(e.target.value) } />
+        <button type='submit' className='submit-btn'>{isEditing? 'Edit' : 'Submit'}</button>
+        </div>
+      </form>
+      <List />
+    </section>
   );
 }
 
